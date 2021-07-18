@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-
 import {
   fetchContactsRequest,
   fetchContactsSuccess,
@@ -11,17 +10,14 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-  filterContact,
-} from './contactActions'; //toolkit
+  changeFilter,
+} from './actions';
 
-import contactsList from '../../data/contacts-list.json';
-
-// toolkit
-
-const contacts = createReducer(contactsList, {
+const items = createReducer([], {
   [fetchContactsSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, { payload }) => [...state, payload],
-  [deleteContactSuccess]: (state, { payload }) => state.filter(({ id }) => id !== payload),
+  [deleteContactSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 const loading = createReducer(false, {
@@ -37,11 +33,14 @@ const loading = createReducer(false, {
 });
 
 const filter = createReducer('', {
-  [filterContact]: (_, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 
+const error = createReducer(null, {});
+
 export default combineReducers({
-  contacts,
+  items,
   filter,
   loading,
+  error,
 });

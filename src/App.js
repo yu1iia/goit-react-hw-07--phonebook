@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ContactForm from './Components/ContactForm';
-import Filter from './Components/Filter';
-import ContactList from './Components/ContactList';
+import ContactForm from './Components/ContactForm/ContactForm';
+import Filter from './Components/Filter/Filter';
+import ContactList from './Components/ContactList/ContactList';
 
 import './App.css';
 
@@ -18,5 +18,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
